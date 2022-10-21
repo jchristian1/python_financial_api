@@ -1,0 +1,12 @@
+SELECT 
+	public."Company".symbol as symbol,
+	public."Financial_Statement_Meta_Data".start_date as date,
+	public."Financials_Values".ammount as ammount,
+	public."Financial_Indicator".tag as Financial_Indicator
+FROM
+	public."Company" 
+	INNER JOIN public."Financial_Statement_Meta_Data" ON public."Company".id_company = public."Financial_Statement_Meta_Data".id_company
+	INNER JOIN public."Financials_Values" ON public."Financial_Statement_Meta_Data".id_financial_statement_meta_data = public."Financials_Values".id_financial_statement_meta_data
+	INNER JOIN public."Financial_Indicator" ON public."Financials_Values".id_financial_indicator = public."Financial_Indicator".id_financial_indicator
+WHERE
+	public."Financial_Statement_Meta_Data".start_date BETWEEN '2020-01-01' and '2020-12-31';
